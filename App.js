@@ -24,7 +24,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import WhatIsYourUsername from './src/components/UsernameForm';
+import UsernameForm from './src/components/UsernameForm';
 
 class App extends Component {
 
@@ -55,16 +55,12 @@ class App extends Component {
   }
 
   currentScreen = () => {
-    // if (this.state.currentScreen === "WhatIsYourUsernameScreen") {
-    //   return <UsernameForm onSubmit={this.onUsernameSubmitted} />
-    // }
+    if (this.state.currentScreen === "WhatIsYourUsernameScreen") {
+      return <UsernameForm onSubmit={this.onUsernameSubmitted} />
+    }
     // if (this.state.currentScreen === 'ChatScreen') {
     //   return <ChatScreen currentUsername={this.state.currentUsername} />
     // }
-
-    if (this.state.currentScreen === "WhatIsYourUsernameScreen") {
-      return <WhatIsYourUsername />
-    }
 
   }
 
