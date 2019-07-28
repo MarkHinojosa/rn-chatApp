@@ -7,6 +7,7 @@ import {
   View,
   Text,
   StatusBar,
+  Button
 } from 'react-native';
 
 import {
@@ -18,55 +19,60 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import UsernameForm from './src/components/UsernameForm';
+import ChatScreen from './src/components/ChatScreen';
 import axios from 'axios';
 
 class App extends Component {
 
   constructor() {
     super()
+    this._onUsernameSubmitted = this._onUsernameSubmitted.bind(this);
     this.state = {
       currentUsername: '',
       currentScreen: 'WhatIsYourUsernameScreen'
     }
-    this.onUsernameSubmitted = this.onUsernameSubmitted.bind(this)
   }
 
-  onUsernameSubmitted = (username) => {
-    console.log("running on username submitted");
+  _onUsernameSubmitted = (username) => {
+    console.log('runng on username submitted', username)
 
-    // return( fetch('http://localhost:3001/users', {
+    // fetch('https://giant-cheetah-37.localtunnel.me/users', {
     //   method: 'POST',
     //   headers: {
     //     'Content-Type': 'application/json',
     //   },
-    //   body: JSON.stringify({ username }),
+    //   body: JSON.stringify(username),
     // })
-      // .then(response => {
-      //   this.setState({
-      //     currentUsername: username,
-      //     currentScreen: 'ChatScreen'
-      //   })
-      // })
-      // .catch(error => console.error('error', error))
+    //   .then(response => {
+    //     this.setState({
+    //       currentUsername: username,
+    //       currentScreen: 'ChatScreen'
+    //     })
+    //   })
+    //   .catch(error => console.error('errorrrr', error))
 
-      axios.post('http://localhost:3001/users', {
-        username: username
-      })
-      .then(function (response) {
-        console.log(response);
+    axios.post('https://giant-cheetah-37.localtunnel.me/users', {
+      username: username
+    })
+      .then(response => {
+        this.setState({
+          currentUsername: username,
+          currentScreen: 'ChatScreen'
+        })
       })
       .catch(function (error) {
         console.log(error);
       });
+
   }
 
   currentScreen = () => {
     if (this.state.currentScreen === "WhatIsYourUsernameScreen") {
-      return <UsernameForm onSubmit={this.onUsernameSubmitted} />
+      return <UsernameForm onSubmit={this._onUsernameSubmitted} />
     }
-    // if (this.state.currentScreen === 'ChatScreen') {
-    //   return <ChatScreen currentUsername={this.state.currentUsername} />
-    // }
+    if (this.state.currentScreen === 'ChatScreen') {
+      return <ChatScreen currentUsername={this.state.currentUsername} />
+    }
 
   }
 

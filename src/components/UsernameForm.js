@@ -7,18 +7,18 @@ export default class UsernameForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: 'x',
+            username: '',
         }
     }
 
     _onSubmit = (e) => {
-        console.log(this.state, "submitting username")
-        // e.preventDefault()
-        this.props.onSubmit(this.state.username)
+        console.log(this.state);
+        e.preventDefault();
+        this.props.onSubmit(this.state.username);
     }
 
     _onChange(e) {
-        this.setState({ username: e }, () => console.log(this.state))
+        this.setState({ username: e })
     }
 
     render() {
