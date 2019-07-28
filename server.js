@@ -16,6 +16,7 @@ app.use(cors())
 
 app.post('/users', (req, res) => {
   const { username } = req.body
+  console.log(username, "username")
   chatkit
     .createUser({
       id: username,

@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
 
 import React, { Fragment, Component } from 'react';
 import {
@@ -25,6 +18,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import UsernameForm from './src/components/UsernameForm';
+import axios from 'axios';
 
 class App extends Component {
 
@@ -37,23 +31,33 @@ class App extends Component {
     this.onUsernameSubmitted = this.onUsernameSubmitted.bind(this)
   }
 
-  onUsernameSubmitted(username) {
+  onUsernameSubmitted = (username) => {
     console.log("running on username submitted");
 
-    // fetch('http://localhost:3001/users', {
+    // return( fetch('http://localhost:3001/users', {
     //   method: 'POST',
     //   headers: {
     //     'Content-Type': 'application/json',
     //   },
     //   body: JSON.stringify({ username }),
     // })
-    //   .then(response => {
-    //     this.setState({
-    //       currentUsername: username,
-    //       currentScreen: 'ChatScreen'
-    //     })
-    //   })
-    //   .catch(error => console.error('error', error))
+      // .then(response => {
+      //   this.setState({
+      //     currentUsername: username,
+      //     currentScreen: 'ChatScreen'
+      //   })
+      // })
+      // .catch(error => console.error('error', error))
+
+      axios.post('http://localhost:3001/users', {
+        username: username
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   currentScreen = () => {
