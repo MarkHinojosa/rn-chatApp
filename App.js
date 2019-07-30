@@ -51,7 +51,7 @@ class App extends Component {
     //   })
     //   .catch(error => console.error('errorrrr', error))
 
-    axios.post('https://giant-cheetah-37.localtunnel.me/users', {
+    axios.post('https://itchy-husky-57.localtunnel.me/users', {
       username: username
     })
       .then(response => {
