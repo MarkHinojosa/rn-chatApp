@@ -86,7 +86,8 @@ export default class ChatScreen extends Component {
                 <View style={{ width: "100%", height: '100%', borderWidth: 3, borderColor: "black", flexDirection: 'row' }}>
                     <WhosOnlineList />
                     <View style={{ flexDirection: 'column' }}>
-                        <MessageList messages={this.state.currentUser}/>
+                        <MessageList
+                         messages={this.state.messages}/>
                         <TypingIndicator />
                         <SendMessageForm />
                     </View>
