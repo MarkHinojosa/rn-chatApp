@@ -34,36 +34,18 @@ class App extends Component {
   }
 
   _onUsernameSubmitted = (username) => {
-    console.log('runng on username submitted', username)
-
-    // fetch('https://giant-cheetah-37.localtunnel.me/users', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(username),
-    // })
-    //   .then(response => {
-    //     this.setState({
-    //       currentUsername: username,
-    //       currentScreen: 'ChatScreen'
-    //     })
-    //   })
-    //   .catch(error => console.error('errorrrr', error))
-
-    axios.post('https://itchy-husky-57.localtunnel.me/users', {
+    axios.post('http://10.0.3.2:3001/users', {
       username: username
     })
       .then(response => {
         this.setState({
           currentUsername: username,
           currentScreen: 'ChatScreen'
-        })
+        }, () => console.log(this.state.currentScreen))
       })
       .catch(function (error) {
         console.log(error);
       });
-
   }
 
   currentScreen = () => {
