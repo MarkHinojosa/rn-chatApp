@@ -6,20 +6,27 @@ export class MessageList extends Component {
     constructor() {
         super()
         this.state = {
-            messages: ''
         }
-      }
+    }
 
-    componentDidMount(){
-            this.setState({
-                messages: this.props.messages
-            }, ()=> console.log(this.state.messages))
-        }
+    componentDidMount() {
+    }
+
+    _mapThroughMessages = () => {
+
+        return (
+            this.props.messages.map((message, index) =>
+                <View key={index}>
+                    <Text>{message.text}</Text>
+                </View>
+            )
+        )
+    }
 
     render() {
         return (
-            <View style={{width: "100%", height: "80%"}}>
-                <Text style={{color: "red"}}> {this.props.messages.map(message => message.text )} </Text>
+            <View style={{ width: "100%", height: "80%" }}>
+                {this._mapThroughMessages()}
             </View>
         )
     }

@@ -7,7 +7,6 @@ import TypingIndicator from './TypingIndicator';
 import SendMessageForm from './SendMessageForm';
 
 export default class ChatScreen extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -21,7 +20,6 @@ export default class ChatScreen extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props);
 
         const chatManager = new Chatkit.ChatManager({
             instanceLocator: 'v1:us1:a8cbb16b-0c43-46f6-851b-976d04bb843b',
@@ -42,7 +40,7 @@ export default class ChatScreen extends Component {
                         onMessage: message => {
                             this.setState({
                                 messages: [...this.state.messages, message],
-                            }, () => console.log(this.state.messages))
+                            })
                         },
                         onUserStartedTyping: user => {
                             console.log(user);
@@ -61,7 +59,7 @@ export default class ChatScreen extends Component {
                 })
             })
             .then(currentRoom => {
-                this.setState({ currentRoom }, () => console.log(this.state.currentRoom.id, "current room id"))
+                this.setState({ currentRoom }, () => console.log(this.state.currentRoom, "current room"))
             })
             .catch(error => console.error('error', error))
     }
@@ -84,7 +82,9 @@ export default class ChatScreen extends Component {
         return (
             <View>
                 <View style={{ width: "100%", height: '100%', borderWidth: 3, borderColor: "black", flexDirection: 'row' }}>
-                    <WhosOnlineList />
+                    <WhosOnlineList
+                        users={this.state.currentRoom.users}
+                    />
                     <View style={{ flexDirection: 'column' }}>
                         <MessageList
                          messages={this.state.messages}/>
