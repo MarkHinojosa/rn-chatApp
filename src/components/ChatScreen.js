@@ -43,7 +43,6 @@ export default class ChatScreen extends Component {
                             })
                         },
                         onUserStartedTyping: user => {
-                            console.log(user);
                             this.setState({
                                 usersWhoAreTyping: [...this.state.usersWhoAreTyping, user.name],
                             }, () => console.log(this.state.usersWhoAreTyping))

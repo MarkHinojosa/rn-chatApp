@@ -41,7 +41,7 @@ class App extends Component {
         this.setState({
           currentUsername: username,
           currentScreen: 'ChatScreen'
-        }, () => console.log(this.state.currentScreen))
+        })
       })
       .catch(function (error) {
         console.log(error);
