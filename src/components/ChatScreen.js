@@ -15,8 +15,6 @@ export default class ChatScreen extends Component {
             messages: [],
             usersWhoAreTyping: [],
         }
-        // this.sendMessage = this.sendMessage.bind(this)
-        // this.sendTypingEvent = this.sendTypingEvent.bind(this)
     }
 
     componentDidMount() {
@@ -63,12 +61,12 @@ export default class ChatScreen extends Component {
             .catch(error => console.error('error', error))
     }
 
-    // sendMessage(text) {
-    //     this.state.currentUser.sendMessage({
-    //         text,
-    //         roomId: this.state.currentRoom.id
-    //     })
-    // }
+    sendMessage(text) {
+        this.state.currentUser.sendMessage({
+            text,
+            roomId: this.state.currentRoom.id
+        })
+    }
 
     // sendTypingEvent = () => {
     //     console.log(this.state.currentRoom.id)
