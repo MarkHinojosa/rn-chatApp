@@ -12,7 +12,6 @@ export default class UsernameForm extends Component {
     }
 
     _onSubmit = (e) => {
-        console.log(this.state);
         e.preventDefault();
         this.props.onSubmit(this.state.username);
     }
