@@ -34,6 +34,7 @@ class App extends Component {
   }
 
   _onUsernameSubmitted = (username) => {
+    
     axios.post('http://10.0.3.2:3001/users', {
       username: username
     })
@@ -44,7 +45,7 @@ class App extends Component {
         })
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(error, "error");
       });
   }
 

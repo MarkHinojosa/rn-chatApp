@@ -30,7 +30,7 @@ export default class ChatScreen extends Component {
         chatManager
             .connect()
             .then(currentUser => {
-                this.setState({ currentUser })
+                this.setState({ currentUser }, ()=> console.log("setting current user"))
                 return currentUser.subscribeToRoom({
                     roomId: '19893490',
                     messageLimit: 100,
@@ -56,7 +56,7 @@ export default class ChatScreen extends Component {
                 })
             })
             .then(currentRoom => {
-                this.setState({ currentRoom }, () => console.log(this.state.currentRoom, "current room"))
+                this.setState({ currentRoom }, () => console.log(this.state, "current roomm"))
             })
             .catch(error => console.error('error', error))
     }
@@ -80,7 +80,7 @@ export default class ChatScreen extends Component {
             <View>
                 <View style={{ width: "100%", height: '100%', borderWidth: 3, borderColor: "black", flexDirection: 'row' }}>
                     <WhosOnlineList
-                        users={this.state.currentRoom.users}
+                        users={this.state.currentRoom.userIds}
                     />
                     <View style={{ flexDirection: 'column' }}>
                         <MessageList
