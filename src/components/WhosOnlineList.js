@@ -5,9 +5,17 @@ export class WhosOnlineList extends Component {
 
     _mapThroughOnlineList = () => {
         return (
-            this.props.users.map((user, index) =>
-                <Text style={{ color: 'white', margin: 2 }} key={index}> {user.name} </Text>
-            ))
+            this.props.users.map((user, index) => {
+                if (user.name === this.props.currentUser.name) {
+                    return (
+                        <Text style={{ color: 'white', margin: 2 }} key={index}> {user.name} (You)</Text>
+                    )
+                } else {
+                    return (
+                        <Text style={{ color: 'white', margin: 2 }} key={index}> {user.name} </Text>
+                    )
+                }
+            }))
     }
 
     render() {
