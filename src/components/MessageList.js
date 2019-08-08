@@ -13,10 +13,9 @@ export class MessageList extends Component {
     }
 
     _mapThroughMessages = () => {
-
         return (
             this.props.messages.map((message, index) =>
-                <View key={index}>
+                <View style={{ margin:2 }} key={index}>
                     <Text>{message.text}</Text>
                 </View>
             )

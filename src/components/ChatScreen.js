@@ -18,7 +18,6 @@ export default class ChatScreen extends Component {
     }
 
     componentDidMount() {
-
         const chatManager = new Chatkit.ChatManager({
             instanceLocator: 'v1:us1:a8cbb16b-0c43-46f6-851b-976d04bb843b',
             userId: this.props.currentUsername,
@@ -30,7 +29,7 @@ export default class ChatScreen extends Component {
         chatManager
             .connect()
             .then(currentUser => {
-                this.setState({ currentUser }, ()=> console.log("setting current user"))
+                this.setState({ currentUser })
                 return currentUser.subscribeToRoom({
                     roomId: '19893490',
                     messageLimit: 100,
@@ -80,13 +79,17 @@ export default class ChatScreen extends Component {
             <View>
                 <View style={{ width: "100%", height: '100%', borderWidth: 3, borderColor: "black", flexDirection: 'row' }}>
                     <WhosOnlineList
-                        users={this.state.currentRoom.userIds}
+                        currentUser={this.state.currentUser}
+                        users={this.state.currentRoom.users}
                     />
                     <View style={{ flexDirection: 'column' }}>
                         <MessageList
-                         messages={this.state.messages}/>
-                        <TypingIndicator />
-                        <SendMessageForm />
+                            messages={this.state.messages} />
+                        <TypingIndicator usersWhoAreTyping={this.state.usersWhoAreTyping} />
+                        <SendMessageForm
+                            onSubmit={this.sendMessage}
+                            onChange={this.sendTypingEvent}
+                        />
                     </View>
                 </View>
             </View>
