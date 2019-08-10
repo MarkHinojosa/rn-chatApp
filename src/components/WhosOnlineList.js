@@ -6,13 +6,18 @@ export class WhosOnlineList extends Component {
     _mapThroughOnlineList = () => {
         return (
             this.props.users.map((user, index) => {
+                console.log(user.presence.state, "user presence state")
                 if (user.name === this.props.currentUser.name) {
                     return (
                         <Text style={{ color: 'white', margin: 2 }} key={index}> {user.name} (You)</Text>
                     )
+                } else if (user.presence.state === 'online') {
+                    return (
+                        <Text style={{ color: 'white', margin: 2 }} key={index}> {user.name} (on) </Text>
+                    )
                 } else {
                     return (
-                        <Text style={{ color: 'white', margin: 2 }} key={index}> {user.name} </Text>
+                        <Text style={{ color: 'white', margin: 2 }} key={index}> {user.name} (off) </Text>
                     )
                 }
             }))

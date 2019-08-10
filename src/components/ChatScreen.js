@@ -29,7 +29,7 @@ export default class ChatScreen extends Component {
         chatManager
             .connect()
             .then(currentUser => {
-                this.setState({ currentUser })
+                this.setState({ currentUser }, () => (this.state.currentUser, "current user"))
                 return currentUser.subscribeToRoom({
                     roomId: '19893490',
                     messageLimit: 100,
@@ -60,19 +60,20 @@ export default class ChatScreen extends Component {
             .catch(error => console.error('error', error))
     }
 
-    sendMessage(text) {
+    sendMessage = (text) => {
+        console.log(this.state, "this.state")
         this.state.currentUser.sendMessage({
             text,
             roomId: this.state.currentRoom.id
         })
     }
 
-    // sendTypingEvent = () => {
-    //     console.log(this.state.currentRoom.id)
-    //     this.state.currentUser
-    //         .isTypingIn({ roomId: this.state.currentRoom.id })
-    //         .catch(error => console.error('error', error))
-    // }
+    sendTypingEvent = () => {
+        console.log(this.state.currentUser)
+        this.state.currentUser
+            .isTypingIn({ roomId: this.state.currentRoom.id })
+            .catch(error => console.error('error', error))
+    }
 
     render() {
         return (
