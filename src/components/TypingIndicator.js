@@ -1,13 +1,26 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 
-export class TypingIndicator extends Component {
+class TypingIndicator extends Component {
+
     render() {
-        return (
-            <View style={{width: '100%', height: '10%'}}>
-                <Text> Typing Indicator </Text>
-            </View>
-        )
+        console.log(this.props);
+        if (this.props.usersWhoAreTyping.length > 0) {
+            return (
+                <div>
+                    {`${this.props.usersWhoAreTyping
+                        .slice(0, 2)
+                        .join(' and ')} is typing`}
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <text>Nobody is typing</text>
+                </div>
+            )
+        }
+
     }
 }
 
