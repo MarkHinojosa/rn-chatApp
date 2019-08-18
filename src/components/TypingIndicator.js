@@ -7,17 +7,17 @@ class TypingIndicator extends Component {
         console.log(this.props);
         if (this.props.usersWhoAreTyping.length > 0) {
             return (
-                <div>
+                <View>
                     {`${this.props.usersWhoAreTyping
                         .slice(0, 2)
                         .join(' and ')} is typing`}
-                </div>
+                </View>
             )
         } else {
             return (
-                <div>
-                    <text>Nobody is typing</text>
-                </div>
+                <View>
+                    <Text>Nobody is typing</Text>
+                </View>
             )
         }
 
