@@ -1,34 +1,35 @@
-# rn-chatApp
+# React-Native Chat App
 - Pusherkit API
 - React-Native
 - Node.js
+- Express
 
-# Start Server
+## Start Server
 To start server: 
 ```
-Nodemon Server.js
+nodemon server.js
 ```
 
-# Start Client
+## Start Client
 To Start client:
 ```
 npm start
 ```
 
-# Local Tunnel
-To start local tunnel:
+## Local Tunnel
+To start local tunnel with custom port and subdomain:
 ```
-lt --port 8000
+lt --port 3001 --subdomain tidy-rabbit-91
 ```
-# Setting up REST Api address 
+## Setting up REST Api address 
 If running local node server + Genymotion emulation, add this to the axios.post in App.js:
 ```
 http://10.0.3.2:3001/users
 ```
 If using Local Tunnel, apply given URL + "/users"
 
-# Generating APK
-1. Assemble Release 
+## Generating APK
+1. Bundle 
 ```
 react-native bundle --dev false  --platform android --entry-file index.js --bundle-output android/app/src/main/assets/index.bundle --assets-dest android/app/src/main/res
 ```
@@ -43,6 +44,9 @@ cd android/ && ./gradlew clean && ./gradlew assembleRelease
 ```
 4. Locate APK:
 The APK should be found in
-```android/app/build/outputs/apk/debug/app-degub.apk```
+```android/app/build/outputs/apk/debug/app-debug.apk```
 or find it with 
 ```find . | grep -i apk```
+
+## Side Loading
+Make sure to uninstall previous versions of the app before attempting apk sideload/install
