@@ -8,9 +8,11 @@ class TypingIndicator extends Component {
         if (this.props.usersWhoAreTyping.length > 0) {
             return (
                 <View>
-                    {`${this.props.usersWhoAreTyping
-                        .slice(0, 2)
-                        .join(' and ')} is typing`}
+                    <Text>
+                        {`${this.props.usersWhoAreTyping
+                            .slice(0, 2)
+                            .join(' and ')} is typing`}
+                    </Text>
                 </View>
             )
         } else {

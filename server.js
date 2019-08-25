@@ -16,19 +16,16 @@ app.use(cors())
 
 app.post('/users', (req, res) => {
   const { username } = req.body
-  console.log(username, "username")
   chatkit
     .createUser({
       id: username,
       name: username
     })
     .then(() => {
-      console.log("sending response!");
       res.sendStatus(201)
     })
     .catch(error => {
       if (error.error === 'services/chatkit/user_already_exists') {
-        console.log("user already logged in")
         res.sendStatus(200)
       } else {
         res.status(error.status).json(error);
@@ -38,8 +35,6 @@ app.post('/users', (req, res) => {
 
 app.post('/authenticate', (req, res) => {
   const authData = chatkit.authenticate({ userId: req.query.user_id })
-  console.log(authData.status);
-  console.log(authData.body);
   res.status(authData.status).send(authData.body)
 })
 

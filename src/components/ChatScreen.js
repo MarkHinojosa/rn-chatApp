@@ -18,17 +18,15 @@ export default class ChatScreen extends Component {
     }
 
     componentDidMount() {
-        // this.loadChatData();
+        this.loadChatData();
     }
 
     loadChatData = () => {
-        console.log("clicked")
-
         const chatManager = new Chatkit.ChatManager({
             instanceLocator: 'v1:us1:a8cbb16b-0c43-46f6-851b-976d04bb843b',
             userId: this.props.currentUsername,
             tokenProvider: new Chatkit.TokenProvider({
-                url: 'http://10.0.3.2:3001/authenticate'
+                url: 'https://tidy-rabbit-91.localtunnel.me/authenticate'
             })
         })
 
@@ -48,7 +46,7 @@ export default class ChatScreen extends Component {
                         onUserStartedTyping: user => {
                             this.setState({
                                 usersWhoAreTyping: [...this.state.usersWhoAreTyping, user.name],
-                            }, () => console.log(this.state.usersWhoAreTyping))
+                            })
                         },
                         onUserStoppedTyping: user => {
                             this.setState({
@@ -61,12 +59,11 @@ export default class ChatScreen extends Component {
                 })
             })
             .then(currentRoom => {
-                this.setState({ currentRoom }, () => console.log(this.state, "current roomm"))
+                this.setState({ currentRoom })
             })
             .catch(error => console.error('error', error))
     }
     sendMessage = (text) => {
-        console.log(this.state, "this.state")
         this.state.currentUser.sendMessage({
             text,
             roomId: this.state.currentRoom.id
@@ -74,7 +71,6 @@ export default class ChatScreen extends Component {
     }
 
     sendTypingEvent = () => {
-        console.log(this.state.currentUser)
         this.state.currentUser
             .isTypingIn({ roomId: this.state.currentRoom.id })
             .catch(error => console.error('error', error))
@@ -96,11 +92,6 @@ export default class ChatScreen extends Component {
                             onSubmit={this.sendMessage}
                             onChange={this.sendTypingEvent}
                         />
-                        <View>
-                            <TouchableHighlight style={{backgroundColor:'red'}} onPress={this.loadChatData}>
-                                <Text>Click to reload data!</Text>
-                            </TouchableHighlight>
-                        </View>
                     </View>
                 </View>
             </View>
