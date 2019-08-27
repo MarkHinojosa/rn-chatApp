@@ -22,7 +22,7 @@ To start local tunnel with custom port and subdomain:
 lt --port 3001 --subdomain tidy-rabbit-91
 ```
 ## Setting up REST Api address 
-If running local node server + Genymotion emulation, add this to the axios.post in App.js:
+If running local node server + Genymotion emulation, add this to the axios.post in App.js & Chatscreen.js:
 ```
 http://10.0.3.2:3001/users
 ```
