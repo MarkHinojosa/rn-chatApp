@@ -4,7 +4,6 @@ import { Text, View } from 'react-native'
 class TypingIndicator extends Component {
 
     render() {
-        console.log(this.props);
         if (this.props.usersWhoAreTyping.length > 0) {
             return (
                 <View>
@@ -15,14 +14,7 @@ class TypingIndicator extends Component {
                     </Text>
                 </View>
             )
-        } else {
-            return (
-                <View>
-                    <Text>Nobody is typing</Text>
-                </View>
-            )
-        }
-
+        } 
     }
 }
 
