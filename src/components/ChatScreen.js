@@ -17,6 +17,7 @@ export default class ChatScreen extends Component {
         }
     }
 
+    
     componentDidMount() {
         this.loadChatData();
     }
