@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
-import { Text, View, TextInput } from 'react-native'
+import { Text, View, TextInput, TouchableHighlight } from 'react-native'
 
 export class SendMessageForm extends Component {
-    constructor(){
+    constructor() {
         super()
-        this.state={
+        this.state = {
             message: ''
         }
     }
 
     _onChange = (t) => {
         this.props.onChange()
-        this.setState({message: t}, console.log(this.state));
+        this.setState({ message: t }, console.log(this.state));
     }
 
     _onSubmit = (e) => {
@@ -21,16 +21,39 @@ export class SendMessageForm extends Component {
 
     render() {
         return (
-            <View stle={{borderColor: 'black', borderWidth: 3, width: '80%'}}>
+            <View style={{
+                width: '100%',
+                justifyContent: 'space-around',
+                alignContent: 'center',
+                flexDirection: 'row',
+                // borderColor: 'silver',
+                // borderWidth: 3,
+            }}>
                 <TextInput
-                onChangeText={(t) => this._onChange(t)}
-                onSubmitEditing={this._onSubmit}
-                style={{
-                    borderColor: 'gray',
-                    borderWidth: 3,
-                    width: '100%'
-                }}
+                    onChangeText={(t) => this._onChange(t)}
+                    onSubmitEditing={this._onSubmit}
+                    style={{
+                        // height: '80%',
+                        borderRadius: 10,
+                        width: '80%',
+                        borderColor: 'silver',
+                        borderWidth: 3,
+                    }}
                 />
+
+                <TouchableHighlight style={{
+                    alignContent: 'center',
+                    justifyContent: 'center',
+
+                }}>
+                    <Text style={{
+                        backgroundColor: "green",
+                        color:'white',
+                        borderRadius: 2,
+                    }}>
+                        Send
+                    </Text>
+                </TouchableHighlight>
             </View>
         )
     }

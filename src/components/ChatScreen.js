@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableHighlight } from 'react-native'
+import { Text, View, TouchableHighlight, ScrollView } from 'react-native'
 import Chatkit from '@pusher/chatkit-client';
 import WhosOnlineList from './WhosOnlineList';
 import MessageList from './MessageList';
@@ -16,6 +16,7 @@ export default class ChatScreen extends Component {
             usersWhoAreTyping: [],
         }
     }
+
 
     componentDidMount() {
         this.loadChatData();
@@ -84,14 +85,25 @@ export default class ChatScreen extends Component {
                         currentUser={this.state.currentUser}
                         users={this.state.currentRoom.users}
                     />
-                    <View style={{ flexDirection: 'column' }}>
+                    <View style={{ flexDirection: 'column', flex: 1 }}>
                         <MessageList
-                            messages={this.state.messages} />
-                        <TypingIndicator usersWhoAreTyping={this.state.usersWhoAreTyping} />
-                        <SendMessageForm
-                            onSubmit={this.sendMessage}
-                            onChange={this.sendTypingEvent}
+                            messages={this.state.messages}
+                            textStyle={{ color: "white" }}
                         />
+
+                        <TypingIndicator usersWhoAreTyping={this.state.usersWhoAreTyping} />
+                        <View style={{
+                            flex: 2,
+                            justifyContent: 'center',
+                            alignContent: 'center',
+                            borderColor: 'silver',
+                            borderWidth: 3
+                        }}>
+                            <SendMessageForm
+                                onSubmit={this.sendMessage}
+                                onChange={this.sendTypingEvent}
+                            />
+                        </View>
                     </View>
                 </View>
             </View>
