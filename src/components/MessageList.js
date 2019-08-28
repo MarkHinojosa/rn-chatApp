@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, ScrollView, StyleSheet } from 'react-native'
 
 export class MessageList extends Component {
 
@@ -15,8 +15,8 @@ export class MessageList extends Component {
     _mapThroughMessages = () => {
         return (
             this.props.messages.map((message, index) =>
-                <View style={{ margin:2 }} key={index}>
-                    <Text>{message.text}</Text>
+                <View style={{ margin: 2, backgroundColor: '#4169e1' }} key={index}>
+                    <Text style={this.props.textStyle}>{message.text}</Text>
                 </View>
             )
         )
@@ -24,11 +24,19 @@ export class MessageList extends Component {
 
     render() {
         return (
-            <View style={{ width: "100%", height: "80%" }}>
-                {this._mapThroughMessages()}
+            <View style={{ width: "100%", height: '85%'}}>
+                <ScrollView>
+                    {this._mapThroughMessages()}
+                </ScrollView>
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    messageListText: {
+        color: 'purple'
+    }
+})
 
 export default MessageList
