@@ -15,8 +15,10 @@ export class SendMessageForm extends Component {
     }
 
     _onSubmit = (e) => {
-        e.preventDefault();
-        this.props.onSubmit(this.state.message);
+        if (this.state.message) {
+            e.preventDefault();
+            this.props.onSubmit(this.state.message);
+        }
     }
 
     render() {
@@ -41,15 +43,17 @@ export class SendMessageForm extends Component {
                     }}
                 />
 
-                <TouchableHighlight style={{
+                <TouchableHighlight onPress={this._onSubmit} style={{
                     alignContent: 'center',
                     justifyContent: 'center',
 
                 }}>
                     <Text style={{
                         backgroundColor: "green",
-                        color:'white',
-                        borderRadius: 2,
+                        color: 'white',
+                        borderRadius: 8,
+                        fontSize: 8,
+                        padding: 3
                     }}>
                         Send
                     </Text>
